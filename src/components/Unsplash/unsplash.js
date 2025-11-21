@@ -7,6 +7,8 @@ import Modal from './Modal'
 function Unsplash() {
     const [ imageResults, setImageResults]= useState([])
     const [selectedImage, setSelectedImage] = useState(null);
+    const [noResults, setNoResults] = useState(false);
+const [loading, setLoading] = useState(false);
     useEffect(()=>{
         const Access=process.env.REACT_APP_MY_ACCESS_KEY
         function getRandomPhotos (){
@@ -19,7 +21,9 @@ function Unsplash() {
   return (
     
     <div>
-<ImageSearch setImageResults={setImageResults}/>
+<ImageSearch setImageResults={setImageResults}
+setNoResults={setNoResults}
+    setLoading={setLoading}/>
            <ImageResults imageResults={imageResults} setSelectedImage={setSelectedImage} />
            {selectedImage && (
   <Modal
@@ -27,6 +31,14 @@ function Unsplash() {
     onClose={() => setSelectedImage(null)}
   />
 )}
+{loading && <h3 style={{ textAlign: "center" }}>Loading...</h3>}
+
+{noResults && !loading && (
+    <h2 style={{ textAlign: "center", color: "gray", marginTop: "20px" }}>
+        No results found 😢
+    </h2>
+)}
+
     </div>
   )
 }

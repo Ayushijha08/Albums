@@ -3,20 +3,38 @@ import './unsplash.css'
 import React, { useState } from 'react'
 
 
-function ImageSearch({ setImageResults }) {
-    const [search , setSearch]= useState('')
-        console.log('MY_ACCESS_KEY', process.env.REACT_APP_MY_ACCESS_KEY);
+function ImageSearch({ setImageResults, setNoResults, setLoading }) {
+    const [search, setSearch] = useState('');
 
-    function handleSearch(e){
+    function handleSearch(e) {
         e.preventDefault();
-        //  const Access=process.env.REACT_APP_MY_ACCESS_KEY
-        if(search){
-            axios.get(`https://api.unsplash.com/search/photos?query=${search}`,{
-                headers:{'Authorization': `Client-ID ${process.env.REACT_APP_MY_ACCESS_KEY}`}
-            }
-        ).then(response => setImageResults(response.data.results))
+
+        if (search) {
+            setLoading(true);
+            axios.get(`https://api.unsplash.com/search/photos?query=${search}`, {
+                headers: { 'Authorization': `Client-ID ${process.env.REACT_APP_MY_ACCESS_KEY}` }
+            })
+            .then(response => {
+                const results = response.data.results;
+
+                if (results.length === 0) {
+                    setNoResults(true);
+                    setImageResults([]);
+                } else {
+                    setNoResults(false);
+                    setImageResults(results);
+                }
+            })
+            .catch(() => {
+                setNoResults(true);
+                setImageResults([]);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
         }
     }
+
   return (
     <div className='form-container'>
       
