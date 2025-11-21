@@ -1,0 +1,37 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0 0 0 / 70%);
+}
+
+.modalBox {
+  width: 500px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.modalBox img {
+  max-height: 70vh;      /* Image never becomes taller than screen */
+  width: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;   /* Keeps image proportions correct */
+}
