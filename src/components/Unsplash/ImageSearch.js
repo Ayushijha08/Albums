@@ -11,7 +11,7 @@ function ImageSearch({ setImageResults, setNoResults, setLoading }) {
 
         if (search) {
             setLoading(true);
-            axios.get(`https://api.unsplash.com/search/photos?query=${search}`, {
+            axios.get(`https://api.unsplash.com/search/photos?page=1&per_page=30&query=${search}`, {
                 headers: { 'Authorization': `Client-ID ${process.env.REACT_APP_MY_ACCESS_KEY}` }
             })
             .then(response => {
