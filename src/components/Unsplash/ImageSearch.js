@@ -42,7 +42,7 @@ function ImageSearch({ setImageResults, setNoResults, setLoading }) {
              <h2 style={{margin:'20px', fontFamily:'cursive' , fontSize:'bolder', color:'#db2c89ff'}}>Hello!  Inspire Your Creativity</h2>
                 <input 
                 className="search-input"
-                placeholder='Search for images' value={search} onChange={(e) => setSearch(e.target.value)} style={{height: '30px', width: '600px', borderRadius: '5px',marginLeft:'300px'}} />
+                placeholder='Search for images' value={search} onChange={(e) => setSearch(e.target.value)} s/>
                 <button 
                 className="search-btn" type='submit'>Search</button>
             </form></div>
